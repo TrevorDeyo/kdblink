@@ -14,21 +14,20 @@ async def start():
     creds = os.getcwd() + r"\credentials.json"
     
     # loads creds
-    auth = Auth(await json_load(creds))
-    
+    if os.path.exists(creds):
+        auth = Auth(await json_load(creds))
+    else:
     # if creds doesn't exist make it
-    if not os.path.exists(creds):
         await blink.save(creds)
     
     blink.auth = auth
     await blink.start()
-
-    # grab camera names
-    for name, camera in blink.cameras.items():
-        print(name)                   # Name of the camera
-        print(camera.attributes)      # Print available attributes of camera
-    
     return blink
 
 
 blink = asyncio.run(start())
+
+# grab camera names
+for name, camera in blink.cameras.items():
+    print(name)                   # Name of the camera
+    print(camera.attributes)      # Print available attributes of camera

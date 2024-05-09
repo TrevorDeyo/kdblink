@@ -1,5 +1,7 @@
-creditials.json
+# my entries
+credentials.json
 
+# python git ignore template
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
